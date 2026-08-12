@@ -1,17 +1,5 @@
 # Capturing HTTP Login Form Data with Wireshark
 
-## Overview
-
-Wireshark is a network protocol analyzer that can capture and inspect network traffic. When a website uses **HTTP instead of HTTPS**, information submitted through an HTML form may be transmitted without encryption.
-
-In this lab, we use the intentionally vulnerable **VULNWEB/Acunetix test website** to demonstrate how HTTP POST requests can be identified in Wireshark and how form data can be inspected.
-
-> ⚠️ **Ethical and Legal Notice**
->
-> Perform this experiment only on systems that you own or have explicit permission to test. The VULNWEB/Acunetix site is designed for security testing and learning. Do not capture credentials from other people's traffic or networks.
-
----
-
 ## Objective
 
 The objectives of this lab are:
