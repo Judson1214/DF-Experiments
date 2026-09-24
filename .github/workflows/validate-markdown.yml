@@ -1,0 +1,39 @@
+name: Validate Markdown & Repository Integrity
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  lint-and-validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Verify Image and Document Integrity
+        run: |
+          echo "Verifying laboratory directories..."
+          for i in $(seq 1 10); do
+            dir="Experiment-$i"
+            if [ ! -d "$dir" ]; then
+              echo "Error: Missing directory $dir"
+              exit 1
+            fi
+            if [ ! -f "$dir/README.md" ]; then
+              echo "Error: Missing README.md in $dir"
+              exit 1
+            fi
+            if [ ! -d "$dir/images" ]; then
+              echo "Error: Missing images directory in $dir"
+              exit 1
+            fi
+          done
+          echo "All 10 experiments verified successfully!"
